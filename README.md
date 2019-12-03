@@ -1,1 +1,1 @@
-# CheminformaticsPy
+# code snippet of cheminformatics
