@@ -1,16 +1,18 @@
 import os
-path = r'data'
-f = file('merge.sdf', 'wb')
-i = 0
-for filename in os.listdir(path):
-    name = path + '\\' + filename
-    f0 = open(name, 'rb')
+import glob
+f = open('merged.sdf', 'w')
+num_confs = 0
+for filename in glob.glob('sdf/*.sdf'):
+    print(filename)
+    f0 = open(filename, 'r')
     while True:
         line = f0.readline()
-        if line[:4] == '$$$$':
-            i += 1
-        if line != '':
+        if '$$$$' in line:
+            num_confs += 1
+        if line:
             f.write(line)
         else:
             break
-print i
+f.close()
+#os.system('rm -rf sdf/')
+print(f'There are {num_confs} conformations.')
